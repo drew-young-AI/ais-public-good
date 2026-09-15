@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>terminal-ipc v1.1 稽核 — 2026-08-19</title>
+<style>
+  body { font: 14px/1.45 ui-monospace, Menlo, monospace; max-width: 960px; margin: 24px auto; color: #111; }
+  h1, h2 { font-size: 16px; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th, td { border: 1px solid #ccc; padding: 4px 8px; text-align: left; vertical-align: top; }
+  th { background: #f4f4f4; }
+  .pass { color: #0a0; }
+  .fail { color: #a00; }
+  .warn { color: #a60; }
+  pre { background: #f7f7f7; border: 1px solid #ddd; padding: 8px; overflow: auto; white-space: pre-wrap; }
+  .token { background: #ffea00; }
+  .meta { color: #555; }
+</style>
+</head>
+<body>
+<h1>terminal-ipc v1.1 視覺稽核</h1>
+<p class="meta">2026-08-19 · macOS · tmux 3.6b · /bin/bash 3.2 · token=<span class="token">IPC_OPT_184126_25431</span></p>
+
+<h2>結論</h2>
+<table>
+  <tr><th>項</th><th>結果</th><th>證據</th></tr>
+  <tr><td>隔離 selftest</td><td class="pass">PASS 25 / FAIL 0</td><td>scripts/tmux-ipc-selftest · session ipc-selftest-24754（已銷毀）</td></tr>
+  <tr><td>tmux_cli_integration:0.0 握手</td><td class="pass">wait-ok 0s</td><td>畫面出現 IPC_OPT_184126_25431</td></tr>
+  <tr><td>devops_dataops_llmops:0.0 握手</td><td class="pass">wait-ok 0s</td><td>畫面出現 IPC_OPT_184126_25431</td></tr>
+  <tr><td>registry verify（list）</td><td class="pass">rc=0</td><td>cap owner terminal-ipc</td></tr>
+  <tr><td>兩顆目標內是否有 Claude Code</td><td class="warn">否 · 皆為 idle zsh</td><td>scan：claude/grok/codex/hermes 全在 tmux 外（⚠ tty=ttys000..007）</td></tr>
+</table>
+
+<h2>認知斷裂清單（早上失敗的真正原因）</h2>
+<table>
+  <tr><th>#</th><th>先前假設</th><th>物理事實</th></tr>
+  <tr><td>1</td><td>tmux send-keys rc=0 = 注入成功</td><td>rc=0 只代表 tmux 收下按鍵。v1.1 成功條件改為畫面指紋改變，否則 rc=3</td></tr>
+  <tr><td>2</td><td>DELAY_BEFORE_ACTION / debug_log 能修好 TUI 競態</td><td>固定 sleep 不是握手。改為 fingerprint idle（ready）與 fingerprint change（send confirm）</td></tr>
+  <tr><td>3</td><td>稽核軌 before 空白 = 當時沒畫面</td><td>capture-pane 末行常是空行。改取最後非空行。07:46 before 空；18:41 before = drew@70 ~ %</td></tr>
+  <tr><td>4</td><td>read 輸出正常</td><td>printf '%s\\n' 在 bash printf 印出字面 \n。已改 '%s\\n' → 真實換行</td></tr>
+  <tr><td>5</td><td>interactive 是 observe-act-verify</td><td>舊實作固定 15×3s=45s 且從不因穩定提前結束。現為指紋穩定 2 輪即結束（實測 2s）</td></tr>
+  <tr><td>6</td><td>空 send 無害</td><td>空字串 + Enter = 對 TUI 盲送提交。現拒絕，rc=1</td></tr>
+  <tr><td>7</td><td>兩顆具名 session 內嵌 Claude Code</td><td>scan 顯示兩者 command=zsh alt=0。Claude 在 Terminal.app tty，tmux 無法注入</td></tr>
+  <tr><td>8</td><td>中文 echo 字串可直接 $target（…）</td><td>bash 3.2 + UTF-8 locale 把全形括號首 byte 吃進變數名 → unbound variable。改 ${target}</td></tr>
+</table>
+
+<h2>隔離 selftest 矩陣</h2>
+<table>
+  <tr><th>id</th><th>判定</th><th>細節</th></tr>
+  <tr><td>syntax</td><td class="pass">PASS</td><td>bash -n clean</td></tr>
+  <tr><td>missing-target</td><td class="pass">PASS</td><td>rc=2</td></tr>
+  <tr><td>spawn</td><td class="pass">PASS</td><td>rc=0</td></tr>
+  <tr><td>empty-send</td><td class="pass">PASS</td><td>rc=1</td></tr>
+  <tr><td>list-has-session</td><td class="pass">PASS</td><td>found ipc-selftest-24754:0.0</td></tr>
+  <tr><td>dryrun-rc / dryrun-no-inject</td><td class="pass">PASS</td><td>rc=0 且畫面無 SHOULD_NOT_APPEAR</td></tr>
+  <tr><td>read-no-literal-backslash-n</td><td class="pass">PASS</td><td>不再輸出字面 \n</td></tr>
+  <tr><td>send-token + wait-token + read-token</td><td class="pass">PASS</td><td>指紋確認 + pattern 握手</td></tr>
+  <tr><td>wait-timeout</td><td class="pass">PASS</td><td>rc=3</td></tr>
+  <tr><td>status-command / status-state</td><td class="pass">PASS</td><td>status 子指令</td></tr>
+  <tr><td>before-nonempty / after-logged</td><td class="pass">PASS</td><td>稽核軌不再空白</td></tr>
+  <tr><td>interactive-rc / early-exit / token</td><td class="pass">PASS</td><td>elapsed=2s（舊行為 45s）</td></tr>
+  <tr><td>send-unicode / wait-unicode</td><td class="pass">PASS</td><td>握手-OK</td></tr>
+  <tr><td>send-literal-cc / wait-literal-cc</td><td class="pass">PASS</td><td>C-c 當文字而非 Ctrl-C</td></tr>
+  <tr><td>kill / gone</td><td class="pass">PASS</td><td>rc=0 後 rc=2</td></tr>
+</table>
+
+<h2>實目標畫面（注入前後）</h2>
+<p>token 必須在 after 出現，且不得只存在於 before（避免把舊輸出誤當本次成功）。</p>
+
+<h2>tmux_cli_integration:0.0</h2>
+<p class="meta">state=shell-prompt · command=zsh · alt=0 · pid=41003 · tty=/dev/ttys001</p>
+<p>before（末段）</p>
+<pre>drew@70 ~ % echo test
+test
+drew@70 ~ %</pre>
+<p>after（末段）</p>
+<pre>drew@70 ~ % echo test
+test
+drew@70 ~ % echo <span class="token">IPC_OPT_184126_25431</span>
+<span class="token">IPC_OPT_184126_25431</span>
+drew@70 ~ %</pre>
+
+<h2>devops_dataops_llmops:0.0</h2>
+<p class="meta">state=shell-prompt · command=zsh · alt=0 · pid=41005 · tty=/dev/ttys009</p>
+<p>before（末段）</p>
+<pre>drew@70 ~ % echo "hello from devops_dataops_llmops"
+hello from devops_dataops_llmops
+drew@70 ~ %</pre>
+<p>after（末段）</p>
+<pre>drew@70 ~ % echo "hello from devops_dataops_llmops"
+hello from devops_dataops_llmops
+drew@70 ~ % echo <span class="token">IPC_OPT_184126_25431</span>
+<span class="token">IPC_OPT_184126_25431</span>
+drew@70 ~ %</pre>
+
+<h2>scan：Claude Code 不在這兩顆 pane</h2>
+<pre>── tmux pane ──
+   devops_dataops_llmops:0.0  [zsh]  alt=0
+   test_session:0.0           [zsh]  alt=0
+   tmux_cli_integration:0.0   [zsh]  alt=0
+
+── 可接續（已在 tmux 內）──
+  （無）
+── 需重啟才能控（跑在一般終端）──
+   ⚠  tty=ttys000   claude
+   ⚠  tty=ttys002   claude
+   ⚠  tty=ttys003   grok --yolo
+   ⚠  tty=ttys004   codex
+   ⚠  tty=ttys005   copilot --yolo
+   ⚠  tty=ttys006   claude
+   ⚠  tty=ttys007   hermes</pre>
+<p>要對 Claude Code 注入：在該終端 <code>tmux new -s claude-a</code> 後再啟動 claude，或 <code>tmux-ipc spawn claude-a claude</code>。對目前這兩顆 zsh pane 注入，只會進 zsh，不會進 Claude。</p>
+
+<h2>確定性回饋清單</h2>
+<table>
+  <tr><th>項</th><th>狀態</th><th>來源</th></tr>
+  <tr><td>Reproducibility</td><td class="pass">是</td><td>固定腳本 + 唯一 token；相同輸入 → 相同 rc / pattern</td></tr>
+  <tr><td>Test Evidence</td><td class="pass">是</td><td>tmux-ipc-selftest PASS 25/0；live wait-ok × 2</td></tr>
+  <tr><td>Static Gate</td><td class="pass">是</td><td>bash -n tmux-ipc / tmux-ipc-selftest（非 Python，無 ruff/mypy 適用面）</td></tr>
+  <tr><td>Visual Audit</td><td class="pass">是</td><td>本檔 + logs/2026-08-19.md before/after/wait-ok</td></tr>
+  <tr><td>Local LLM Cross-check</td><td>未跑</td><td>選用；未呼叫 127.0.0.1:9000</td></tr>
+</table>
+</body>
+</html>

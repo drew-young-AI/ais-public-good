@@ -1,0 +1,4 @@
+interface:
+  display_name: "LINE Webhook Watchdog"
+  short_description: "Verify and safely recover LINE webhook availability"
+  default_prompt: "Use $line-webhook-watchdog to check a LINE webhook without assuming a bot framework or tunnel provider."

@@ -1,0 +1,38 @@
+# Session commands for MLX server setup with KV-cache quantization
+
+# Kill any existing mlx_lm server processes
+pkill -f "mlx_lm server"
+
+# Set up Python environment
+python3.14 -m venv ~/mlx_venv
+source ~/mlx_venv/bin/activate
+
+# Install required packages
+pip install --break-system-packages mlx mlx-metal mlx-lm
+
+# Verify installation
+python -c "import mlx, mlx_lm; print('mlx:', mlx.__version__, 'mlx_lm:', mlx_lm.__version__)"
+
+# Start server with KV-cache quantization
+export HF_HUB_OFFLINE=1
+python -m mlx_lm server \\
+  --model ~/models/Kimi-Dev-72B-4bit-DWQ \\
+  --host 127.0.0.1 \\
+  --port 9000 \\
+  --max-tokens 4096 \\
+  --kv-bits 4 \\
+  --kv-group-size 64 \\
+  --quantized-kv-start 2048 \\
+  --log-level INFO &
+
+# Wait for server to start
+sleep 5
+
+# Test endpoint
+curl -s http://127.0.0.1:9000/v1/models | jq .
+curl -s -X POST http://127.0.0.1:9000/v1/completions \\
+  -H "Content-Type: application/json" \\
+  -d '{"model":"~/models/Kimi-Dev-72B-4bit-DWQ","prompt":"Hello, how are you?","max_tokens":10,"temperature":0.0}' | jq .
+
+# Monitor memory usage (in another terminal)
+ps aux | grep -v grep | grep mlx_lm

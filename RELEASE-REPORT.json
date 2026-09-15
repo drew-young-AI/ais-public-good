@@ -1,0 +1,167 @@
+{
+  "license": "MIT",
+  "skills": {
+    "included": 37,
+    "excluded": 32,
+    "excluded_detail": [
+      "automation/browser-hta（generic-infra+dual-use）",
+      "autonomous-ai-agents/hermes-agent-script-debugging（vendor-bound）",
+      "autonomous-ai-agents/hermes-host-installation（vendor-bound）",
+      "autonomous-ai-agents/kanban-codex-lane（business-bound）",
+      "creative/baoyu-article-illustrator（vendor-bound）",
+      "creative/baoyu-comic（vendor-bound）",
+      "data-science/bitcoin-daily-collection（business-bound）",
+      "data-science/data-pipeline-setup（business-bound）",
+      "devops/cloudflare-quick-tunnel-recovery（business-bound）",
+      "devops/devops-handover（business-bound）",
+      "devops/kanban-orchestrator（vendor-bound）",
+      "devops/kanban-worker（vendor-bound）",
+      "devops/webhook-subscriptions（vendor-bound）",
+      "gaming/minecraft-modpack-server（business-bound）",
+      "gaming/pokemon-player（business-bound）",
+      "hermes-cli-unified（vendor-bound）",
+      "hermes-cli/mcp-stdio-tool-config（vendor-bound）",
+      "hermes-desktop-plugins（vendor-bound）",
+      "hermes-provider-management（vendor-bound）",
+      "hermes-themes（vendor-bound）",
+      "kimi/kimi-webbridge（vendor-bound）",
+      "mcp/native-mcp（vendor-bound）",
+      "media/spotify（vendor-bound）",
+      "mlops/inference/obliteratus（business-bound）",
+      "productivity/petdex（vendor-bound）",
+      "productivity/pkm-vocabulary-builder（business-bound）",
+      "productivity/systemprompt-manager（business-bound）",
+      "productivity/tui-widgets（vendor-bound）",
+      "research/polymarket（business-bound）",
+      "software-development/debugging-hermes-tui-commands（vendor-bound）",
+      "software-development/hermes-s6-container-supervision（vendor-bound）",
+      "yuanbao（vendor-bound）"
+    ]
+  },
+  "knowledge": {
+    "included": 28,
+    "excluded": 1,
+    "excluded_detail": [
+      "user-professional-context（見 EXCLUDED_RECORDS 註解：可識別個資，非工程教訓）"
+    ]
+  },
+  "personal_paths_rewritten_to_tilde": {
+    "skills/automation/macos-ui-automation": [
+      "/Users/drew/.hermes/hermes-agent/venv/bin/python\""
+    ],
+    "skills/browser-automation/browser-automation": [
+      "/Users/drew/.codex/.env",
+      "/Users/drew/Library/Application"
+    ],
+    "skills/devops/launchd-scheduling": [
+      "/Users/drew/logs/ai-update-error.log</string>",
+      "/Users/drew/logs/ai-update.log</string>",
+      "/Users/drew/logs/llm-monitor-error.log</string>",
+      "/Users/drew/logs/llm-monitor.log</string>",
+      "/Users/drew/scripts/monitor_local_llm.sh</string>",
+      "/Users/drew/scripts/update_ai_tools.sh</string>"
+    ],
+    "skills/hermes-config-backup": [
+      "/Users/drew/ENV/temp",
+      "/Users/drew/ENV/temp\"",
+      "/Users/drew/ENV/temp/hermes.zip",
+      "/Users/drew/ENV/temp/hermes.zip.enc",
+      "/Users/drew/ENV/temp/hermes.zip.gpg"
+    ],
+    "skills/mlops/local-mlx-llm-server": [
+      "/Users/drew/ENV/localLLM/bin/activate",
+      "/Users/drew/ENV/localLLM/bin/python",
+      "/Users/drew/models/Qwen3.6-35B-A3B-4bit",
+      "/Users/drew/models/Qwen3.6-35B-A3B-4bit-mlx-converted/<random_suffix>"
+    ],
+    "skills/mlops/mlx-server-kv-cache-quantization": [
+      "/Users/drew/models/Kimi-Dev-72B-4bit-DWQ",
+      "/Users/drew/models/Kimi-Dev-72B-4bit-DWQ\",\"prompt\":\"Hello,"
+    ],
+    "skills/mlops/offline-mlx-llm": [
+      "/Users/drew/models/Qwen3.6-35B-A3B-4bit",
+      "/Users/drew/models/Qwen3.6-35B-A3B-4bit\"",
+      "/Users/drew/models/Qwen3.6-35B-A3B-4bit-mlx\""
+    ],
+    "skills/software-development/python-virtual-environment-management": [
+      "/Users/drew/Project",
+      "/Users/drew/Project/project_name/requirements.txt",
+      "/Users/drew/Project/project_name/venv/bin/pip",
+      "/Users/drew/Project/��鉛防護衣/dicom_annotator/requirements.txt",
+      "/Users/drew/Project/��鉛防護衣/dicom_annotator/venv",
+      "/Users/drew/Project/��鉛防護衣/dicom_annotator/venv/bin/pip",
+      "/Users/drew/Project/������鉛防護衣/dicom_annotator/venv"
+    ],
+    "skills/web-task-automation": [
+      "/Users/drew"
+    ],
+    "knowledge/README": [
+      "/Users/drew/Project/line-dify-bridge/"
+    ],
+    "knowledge/backtest-is-not-a-live-score": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/bsd-gnu-portability-traps": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/capability-index-boundary": [
+      "/Users/drew/ENV/Devops/docs/Reachability.md"
+    ],
+    "knowledge/command-allowlist-secret-trap": [
+      "/Users/drew/.claude/projects/-Users-drew/memory/agy_permission_model.md"
+    ],
+    "knowledge/copilot-headless-write-false-success": [
+      "/Users/drew/.claude/projects/-Users-drew/memory/copilot_account_rotation.md"
+    ],
+    "knowledge/dimension-with-one-value": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/free-credit-arsenal": [
+      "/Users/drew/.claude/projects/-Users-drew/memory/free_credit_arsenal.md"
+    ],
+    "knowledge/gate-admits-not-verifies": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/guard-matches-own-prose": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/line-dify-official-plugin-unusable": [
+      "/Users/drew/.claude/projects/-Users-drew/memory/line_dify_bridge.md",
+      "/Users/drew/Project/line-dify-bridge/"
+    ],
+    "knowledge/line-webhook-acceptance-layers": [
+      "/Users/drew/.codex/memories/MEMORY.md"
+    ],
+    "knowledge/mlx-call-discipline": [
+      "/Users/drew/.claude/projects/-Users-drew/memory/mlx_usage_discipline.md",
+      "/Users/drew/models/Qwen3.8-27B-4bit"
+    ],
+    "knowledge/mlx-endpoint-start-path": [
+      "/Users/drew/ENV/activate_mlx_llm.sh",
+      "/Users/drew/ENV/localLLM/mlx_venv/bin/python",
+      "/Users/drew/ENV/mlx_llm_server.env"
+    ],
+    "knowledge/nondeterministic-error-strings": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/one-entry-registry": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/packed-key-arithmetic": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/sleeping-host-breaks-continuity": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/subshell-loses-state": [
+      "/Users/drew/ENV/Devops/docs/Backlog.md"
+    ],
+    "knowledge/user-work-policy": [
+      "/Users/drew/.claude/CLAUDE.md"
+    ],
+    "knowledge/verify-primary-sources": [
+      "/Users/drew/.claude/projects/-Users-drew/memory/verify_primary_sources.md"
+    ]
+  },
+  "note": "只匯出 memory（knowledge）與 tools（shareable skills）。history（session 逐字稿）與執行引擎（scripts/adapters/registry.yaml）不在這份匯出裡——那是不同量級的決定，見 release-prepare 檔頭註解。"
+}

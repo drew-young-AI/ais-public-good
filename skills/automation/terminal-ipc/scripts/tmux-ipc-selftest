@@ -1,0 +1,149 @@
+#!/bin/bash
+# tmux-ipc-selftest — 隔離 session 驗證契約。不碰使用者的具名 session。
+# 退出碼：0 全過 / 1 有失敗
+set -u
+
+IPC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/tmux-ipc"
+SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+STAMP="$(date +%Y%m%d%H%M%S)"
+S="ipc-selftest-$$"
+LOGDIR="$SKILL_DIR/logs/selftest-$STAMP"
+mkdir -p "$LOGDIR"
+export TMUX_IPC_LOGDIR="$LOGDIR"
+export TMUX_IPC_CONFIRM=1
+export TMUX_IPC_CONFIRM_S=8
+
+PASS=0
+FAIL=0
+RESULTS="$LOGDIR/results.tsv"
+: > "$RESULTS"
+
+record() {  # record PASS|FAIL <id> <detail>
+  printf '%s\t%s\t%s\n' "$1" "$2" "$3" >> "$RESULTS"
+  if [ "$1" = "PASS" ]; then PASS=$((PASS + 1)); else FAIL=$((FAIL + 1)); fi
+  echo "[$1] $2 — $3"
+}
+
+assert_rc() {  # assert_rc <id> <expect> <cmd...>
+  local id="$1" expect="$2"; shift 2
+  local rc=0
+  "$@" >/tmp/tmux-ipc-st-out.$$ 2>/tmp/tmux-ipc-st-err.$$ || rc=$?
+  if [ "$rc" -eq "$expect" ]; then
+    record PASS "$id" "rc=$rc"
+  else
+    record FAIL "$id" "expected rc=$expect got rc=$rc err=$(awk '{printf \"%s \", \$0}' /tmp/tmux-ipc-st-err.$$ | cut -c1-200)"
+  fi
+}
+
+assert_out() {  # assert_out <id> <needle>
+  local id="$1" needle="$2"
+  if grep -q -- "$needle" /tmp/tmux-ipc-st-out.$$; then
+    record PASS "$id" "found: $needle"
+  else
+    record FAIL "$id" "missing: $needle in: $(awk '{printf \"%s \", \$0}' /tmp/tmux-ipc-st-out.$$ | cut -c1-120)"
+  fi
+}
+
+assert_not_out() {
+  local id="$1" needle="$2"
+  if grep -q -- "$needle" /tmp/tmux-ipc-st-out.$$; then
+    record FAIL "$id" "unexpected: $needle"
+  else
+    record PASS "$id" "absent: $needle"
+  fi
+}
+
+cleanup() {
+  tmux has-session -t "$S" 2>/dev/null && tmux kill-session -t "$S" 2>/dev/null || true
+  rm -f /tmp/tmux-ipc-st-out.$$ /tmp/tmux-ipc-st-err.$$
+}
+trap cleanup EXIT
+
+echo "=== tmux-ipc selftest  session=$S  log=$LOGDIR ==="
+bash -n "$IPC" && record PASS syntax "bash -n clean" || record FAIL syntax "bash -n failed"
+
+# 1. missing target
+assert_rc missing-target 2 "$IPC" send "no-such-session-xyz:0.0" "echo x"
+
+# 2. spawn
+assert_rc spawn 0 "$IPC" spawn "$S"
+sleep 0.4
+
+# 3. empty send rejected
+assert_rc empty-send 1 "$IPC" send "$S:0.0" ""
+
+# 4. dry-run does not inject
+"$IPC" list >/tmp/tmux-ipc-st-out.$$ 2>/tmp/tmux-ipc-st-err.$$
+assert_out list-has-session "$S:0.0"
+TMUX_IPC_DRYRUN=1 "$IPC" send "$S:0.0" "echo SHOULD_NOT_APPEAR" >/tmp/tmux-ipc-st-out.$$ 2>/tmp/tmux-ipc-st-err.$$
+rc=$?
+[ "$rc" -eq 0 ] && record PASS dryrun-rc "rc=0" || record FAIL dryrun-rc "rc=$rc"
+"$IPC" read "$S:0.0" 20 >/tmp/tmux-ipc-st-out.$$ 2>/tmp/tmux-ipc-st-err.$$
+assert_not_out dryrun-no-inject "SHOULD_NOT_APPEAR"
+
+# 5. read must not print literal \n as two chars at end of content dump
+"$IPC" read "$S:0.0" 5 >/tmp/tmux-ipc-st-out.$$ 2>/tmp/tmux-ipc-st-err.$$
+if grep -q '\\n$' /tmp/tmux-ipc-st-out.$$; then
+  record FAIL read-no-literal-backslash-n "output ends with literal backslash-n"
+else
+  record PASS read-no-literal-backslash-n "no literal \\n suffix"
+fi
+
+# 6. send + wait handshake with unique token
+TOKEN="IPC_ST_${STAMP}_$$"
+assert_rc send-token 0 "$IPC" send "$S:0.0" "echo $TOKEN"
+assert_rc wait-token 0 "$IPC" wait "$S:0.0" "$TOKEN" 8
+"$IPC" read "$S:0.0" 30 >/tmp/tmux-ipc-st-out.$$ 2>/tmp/tmux-ipc-st-err.$$
+assert_out read-token "$TOKEN"
+
+# 7. wait timeout
+assert_rc wait-timeout 3 "$IPC" wait "$S:0.0" "NEVER_APPEARS_XYZ_$$" 2
+
+# 8. status
+"$IPC" status "$S:0.0" >/tmp/tmux-ipc-st-out.$$ 2>/tmp/tmux-ipc-st-err.$$
+assert_out status-command "command="
+assert_out status-state "state="
+
+# 9. before/after log nonempty
+LOGFILE="$(ls -1 "$LOGDIR"/*.md 2>/dev/null | head -1)"
+if [ -n "$LOGFILE" ] && awk -F'|' '/before/ {gsub(/^ +| +$/,"",$5); if($5!="") found=1} END{exit found?0:1}' "$LOGFILE"; then
+  record PASS before-nonempty "last nonempty line logged"
+else
+  record FAIL before-nonempty "before column still empty"
+fi
+if [ -n "$LOGFILE" ] && awk -F'|' '/after/ {gsub(/^ +| +$/,"",$5); if($5!="") found=1} END{exit found?0:1}' "$LOGFILE"; then
+  record PASS after-logged "after snapshot present"
+else
+  record FAIL after-logged "no after row"
+fi
+
+# 10. interactive early-exit (must be << 45s)
+TOKEN2="IPC_INT_${STAMP}_$$"
+start="$(date +%s)"
+"$IPC" interactive "$S:0.0" "echo $TOKEN2" 1 8 >/tmp/tmux-ipc-st-out.$$ 2>/tmp/tmux-ipc-st-err.$$
+irc=$?
+elapsed=$(( $(date +%s) - start ))
+[ "$irc" -eq 0 ] && record PASS interactive-rc "rc=0" || record FAIL interactive-rc "rc=$irc"
+if [ "$elapsed" -le 20 ]; then
+  record PASS interactive-early-exit "elapsed=${elapsed}s (≤20s, not 45s)"
+else
+  record FAIL interactive-early-exit "elapsed=${elapsed}s (still long)"
+fi
+"$IPC" read "$S:0.0" 30 >/tmp/tmux-ipc-st-out.$$ 2>/tmp/tmux-ipc-st-err.$$
+assert_out interactive-token "$TOKEN2"
+
+# 11. unicode / quotes
+assert_rc send-unicode 0 "$IPC" send "$S:0.0" "echo '握手-OK'"
+assert_rc wait-unicode 0 "$IPC" wait "$S:0.0" "握手-OK" 8
+
+# 12. special key names as literal text (must not become Ctrl-C)
+assert_rc send-literal-cc 0 "$IPC" send "$S:0.0" "echo C-c_is_text"
+assert_rc wait-literal-cc 0 "$IPC" wait "$S:0.0" "C-c_is_text" 8
+
+# 13. kill
+assert_rc kill 0 "$IPC" kill "$S:0.0"
+assert_rc gone 2 "$IPC" read "$S:0.0"
+
+echo
+echo "=== result  PASS=$PASS  FAIL=$FAIL  log=$LOGDIR ==="
+[ "$FAIL" -eq 0 ]

@@ -1,0 +1,30 @@
+# Exact commands used to set up offline Qwen3.6‑35B‑A3B‑4bit with Hermes
+
+# 1. Activate the MLX virtual environment (adjust path if needed)
+source ~/ENV/localLLM/bin/activate
+
+# 2. Verify mlx‑lm version
+python -c "import mlx_lm; print(mlx_lm.__version__)"
+
+# 3. Convert the Hugging Face model to MLX format (4‑bit quantized)
+export HF_HUB_OFFLINE=1
+python -m mlx_lm convert \
+    --hf-path ~/models/Qwen3.6-35B-A3B-4bit \
+    --mlx-path ~/models/Qwen3.6-35B-A3B-4bit-mlx-converted/<random_suffix> \
+    --q-bits 4 \
+    --q-group-size 64 \
+    --q-mode affine
+
+# 4. Start the local inference server (offline)
+export HF_HUB_OFFLINE=1
+~/ENV/localLLM/bin/python -m mlx_lm server \
+    --model ~/models/Qwen3.6-35B-A3B-4bit-mlx-converted/<random_suffix> \
+    --host 127.0.0.1 \
+    --port 9000 \
+    --max-tokens 4096 \
+    --log-level INFO
+
+# 5. Test the endpoint with curl (run in another terminal)
+curl -s -X POST http://127.0.0.1:9000/v1/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model":"Qwen3.6-35B-A3B-4bit","prompt":"Hello","max_tokens":10}'

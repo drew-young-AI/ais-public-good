@@ -1,0 +1,12 @@
+# Codegraph MCP Configuration Template
+# Copy this to ~/.hermes/config.yaml under the mcp_servers section
+
+mcp_servers:
+  codegraph:
+    command: npx
+    args:
+      - "-y"
+      - "@colbymchenry/codegraph"
+      - "serve"
+      - "--mcp"
+    timeout: 120
