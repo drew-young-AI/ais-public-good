@@ -6,7 +6,8 @@ description: "攝入層用嵌入式 SQLite 不用 MongoDB：codex 自己就是 J
 tags: [knowledge, memory, storage, ais, session]
 source:
   - path: ${AIS_ROOT}/capabilities/scripts/session-ingest
-    digest: sha256:90c88567216c6e9f465607090d19f5df6dffb9f4dff3d515c43a34b41f7355ac
+    locator: "symbol:DDL"
+    digest: sha256:169ed91a992ceca5534cd00f24c923ae1dea89286b7e40470a961e4b444be776
   - path: ${AIS_ROOT}/workspace/memory/decisions.md
     digest: sha256:d3446b7f890c6ade8b54719a5f09ae377dc76eb8ac8e4619e491a4fbcc809223
 status: stable

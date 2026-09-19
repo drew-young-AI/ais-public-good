@@ -6,7 +6,8 @@ description: "判準是「別的 AI 工具需要直接呼叫它嗎」：是→AI
 tags: [capabilities, registry, governance, ais, reachability]
 source:
   - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
-    digest: sha256:faf67543deca78d42cb06700aefc522209fcba17677236c9b2bd464333c18711
+    locator: "邊界：這個 repo 的能力索引 vs AIS registry"
+    digest: sha256:e1ba05312922adb31c0d43cf69b72ee14e08e8f269bcb9cad52eb67c8a5ff9d4
 status: stable
 inject: auto
 timestamp: '2026-09-02T20:00:00+08:00'

@@ -6,9 +6,11 @@ description: "不認得的資料形狀被跳過而不報錯，會產生看起來
 tags: [parser, false-success, data-integrity, ais]
 source:
   - path: ${AIS_ROOT}/capabilities/scripts/session-ingest
-    digest: sha256:90c88567216c6e9f465607090d19f5df6dffb9f4dff3d515c43a34b41f7355ac
+    locator: "symbol:note_skip"
+    digest: sha256:ea8edd0e2f0b4a374d5cb2d0cd63b33449051fa066d5a3bfef57d84bd01f4bb7
   - path: ${AIS_ROOT}/adapters/test_dispatcher_smoke.py
-    digest: sha256:956c98aec188cde5b296036f910109d5d2a21882e804fb7f5e17d7dedb924aaf
+    locator: "symbol:test_bug4_race_condition_skip"
+    digest: sha256:823286822e7d6d3a416c15ee96e54300fe3756935d7561d18a2a08b6bf6a96c7
 status: stable
 inject: auto
 timestamp: '2026-09-02T19:00:00+08:00'
