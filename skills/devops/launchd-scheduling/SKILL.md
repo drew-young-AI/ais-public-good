@@ -29,31 +29,31 @@ This skill covers how to schedule recurring tasks on macOS using `launchd` (plis
 
 2. **Write a plist file** in `~/Library/LaunchAgents/` with a unique reverse-DNS label.  
    Key plist keys:
-   - `Label`: unique identifier (e.g., `com.drew.ai-tools-update`)
+   - `Label`: unique identifier (e.g., `com.example.ai-tools-update`)
    - `ProgramArguments`: array where the first string is the interpreter (e.g., `/bin/bash`) and subsequent strings are script path and args.
    - `StartCalendarInterval` (for calendar-based schedules) or `StartInterval` (for fixed interval in seconds).
    - `StandardOutPath` and `StandardErrorPath`: optional log file paths.
 
 3. **Load the plist**:  
    ```bash
-   launchctl load ~/Library/LaunchAgents/com.drew.ai-tools-update.plist
+   launchctl load ~/Library/LaunchAgents/com.example.ai-tools-update.plist
    ```
 
 4. **Verify**:  
    ```bash
-   launchctl list | grep com.drew.ai-tools-update
+   launchctl list | grep com.example.ai-tools-update
    ```
 
 5. **Unload / Reload** when you modify the plist:  
    ```bash
-   launchctl unload ~/Library/LaunchAgents/com.drew.ai-tools-update.plist
+   launchctl unload ~/Library/LaunchAgents/com.example.ai-tools-update.plist
    # edit plist
-   launchctl load ~/Library/LaunchAgents/com.drew.ai-tools-update.plist
+   launchctl load ~/Library/LaunchAgents/com.example.ai-tools-update.plist
    ```
 
 6. **Test immediately** (optional):  
    ```bash
-   launchctl start com.drew.ai-tools-update
+   launchctl start com.example.ai-tools-update
    ```
 
 ## Example: Daily AI Tools Update at 04:00
@@ -67,14 +67,14 @@ npm update -g @github/copilot-cli >> ~/logs/ai-update.log 2>&1
 echo "[$(date)] Update finished" >> ~/logs/ai-update.log
 ```
 
-**Plist** (`~/Library/LaunchAgents/com.drew.ai-tools-update.plist`):
+**Plist** (`~/Library/LaunchAgents/com.example.ai-tools-update.plist`):
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.drew.ai-tools-update</string>
+    <string>com.example.ai-tools-update</string>
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
@@ -109,14 +109,14 @@ else
 fi
 ```
 
-**Plist** (`~/Library**(`Library/LaunchAgents/com.drew.llm-monitor.plist`:
+**Plist** (`~/Library**(`Library/LaunchAgents/com.example.llm-monitor.plist`:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.drew.llm-monitor</string>
+    <string>com.example.llm-monitor</string>
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>

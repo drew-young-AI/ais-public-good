@@ -3,6 +3,7 @@ name: python-virtual-environment-management
 type: skill
 category: software-development
 description: "Manage Python venvs: locate, pip freeze, requirements."
+version: 1.0.0
 trigger: When you need to work with Python virtual environments for dependency management, environment reproduction, or package installation.
 ---
 

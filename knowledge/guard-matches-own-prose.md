@@ -6,13 +6,15 @@ description: "grep 式的靜態規則活在它所搜尋的語料裡：規則的�
 tags: [static-analysis, guard-design, false-positive, testing]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "§25 磁碟是被測試套件填滿的"
     digest: sha256:91c6cba24e73668ab86351bcc40c30c0e1a40bbf056b10abfe931ce488283403
     note: "同一個檔案內累計六次；前三次已被該檔自己的註解記錄下來"
 status: stable
 inject: auto
 timestamp: '2026-09-04T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 文字比對的守衛會抓到自己

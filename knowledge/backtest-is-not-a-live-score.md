@@ -6,13 +6,15 @@ description: "模型層的看板可以全綠——特徵建好、回測跑完、
 tags: [mlops, observability, model-evaluation, guard-design, silent-failure, forecasting]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "2-2 沒有任何東西把已發布的預測跟真實發生對帳（已補節點）"
     digest: sha256:a9f29dde5e832c84defe10986009c41eede85a8743989b37189aa33082485f03
     note: "五個 mlops 節點全綠，零筆預測被評分過"
 status: stable
 inject: auto
 timestamp: '2026-09-08T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 回測不是上線分數

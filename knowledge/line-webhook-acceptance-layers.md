@@ -5,12 +5,14 @@ title: LINE webhook 驗收必須分層，健康檢查不是對話
 description: "Hermes LINE 與任何 LINE webhook：本地 health、公開 endpoint、官方測試、真實來回是四層。Quick Tunnel 不是正式穩定宣稱。"
 tags: [line, webhook, hermes, health-check, integration]
 source:
-  - path: ~/.codex/memories/MEMORY.md
+  - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "Task Group: macOS Hermes LINE gateway verification"
     digest: sha256:ee3eccc83ea1d079043d1f6905a67283a35e7a01104708e4d967eb35307e75db
 status: stable
 inject: auto
 timestamp: '2026-08-24T18:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # LINE webhook 驗收分層

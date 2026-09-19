@@ -6,13 +6,15 @@ description: "當租戶／專案／預測目標這類維度目前只有一個值
 tags: [design, data-modelling, testing, guard-design, silent-failure, multi-tenancy]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "六、加第二個目標，暴露出四處「假設只有一個」"
     digest: sha256:b98f3dcd19ff8d6cc486dbc5c4a729d4837c99e323f94fa5fce4069e74e9ff62
     note: "一個公衛試點加第二個預測題目，五處同時變錯，全部靜默"
 status: stable
 inject: auto
 timestamp: '2026-09-09T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 一個「目前只有一個值」的維度

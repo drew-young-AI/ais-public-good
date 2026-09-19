@@ -6,13 +6,15 @@ description: "hermes gateway start 回 success、狀態檔寫 running，但 laun
 tags: [launchd, macos, false-success, health-check, hermes]
 source:
   - agent: codex
-    path: ~/.codex/memories/MEMORY.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "Task Group: macOS Hermes LINE gateway verification"
     digest: sha256:ee3eccc83ea1d079043d1f6905a67283a35e7a01104708e4d967eb35307e75db
     note: "由 codex 管線自 session rollout 抽取"
 status: stable
 inject: auto
 timestamp: '2026-08-24T18:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # launchd 服務的假成功

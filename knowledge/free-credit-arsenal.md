@@ -5,11 +5,13 @@ title: 免費 credit 彈藥庫：三支後備 CLI 的旗標與假成功形狀
 description: "qodercli / kiro-cli / devin 於 2026-08-31 實跑納入 execute 鏈。三支各有一種缺旗標就 rc=0 卻沒做事的形狀；kiro-cli 是唯一回傳結構化成敗與計費的一支。"
 tags: [cli, false-success, cost, ais]
 source:
-  - path: ~/.claude/projects/-Users-drew/memory/free_credit_arsenal.md
+  - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     digest: sha256:c497a76e83c2a4cd7651de24f3f00fc63dd5cb6d75fe5fb94fd6a6fa43de729b
 status: stable
 inject: auto
 timestamp: '2026-08-31T01:30:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 免費 credit 彈藥庫

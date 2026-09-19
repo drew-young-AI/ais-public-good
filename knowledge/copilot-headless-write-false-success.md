@@ -5,11 +5,13 @@ title: Copilot headless 寫入假成功與帳號輪替
 description: "未設 COPILOT_ALLOW_ALL 時寫入會落到 session-state 仍回報 DONE。帳號在 ~/.accounts。文件宣稱 classic PAT 不可用，實測可。"
 tags: [copilot, false-success, accounts]
 source:
-  - path: ~/.claude/projects/-Users-drew/memory/copilot_account_rotation.md
+  - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     digest: sha256:25e8738db23491c80825a4db7d9fd3a6f0c376c4c72b91b3526c6c0da3f0f608
 status: stable
 inject: auto
 timestamp: '2026-08-24T18:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # Copilot headless 寫入假成功

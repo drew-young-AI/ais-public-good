@@ -18,7 +18,7 @@ metadata:
 > SSoT: `~/capabilities/registry.yaml`（capability: `mesh-vpn`）
 
 Use this skill whenever the user wants to reach a device across networks (e.g.
-MacBook ↔ iPhone ↔ CYCH 端點) without port-forwarding, check tailnet
+MacBook ↔ iPhone ↔ 遠端站點) without port-forwarding, check tailnet
 connectivity, or expose a local dev server to another tailnet device securely.
 
 ## 現況（2026-08-17 實測）
@@ -73,7 +73,7 @@ connectivity, or expose a local dev server to another tailnet device securely.
 
 ## 與 Cloudflare Tunnel 的分工
 
-- **Tailscale**：私有 mesh，僅限已加入同一 tailnet 的裝置（本機↔iPhone↔CYCH 端點），無需公開網址。
+- **Tailscale**：私有 mesh，僅限已加入同一 tailnet 的裝置（本機↔iPhone↔遠端站點），無需公開網址。
 - **Cloudflare Tunnel**（見 `devops/cloudflare-cli` skill）：對外公開網址（如 LINE webhook 需要公網可達）。
 - 兩者用途不重疊，勿混用：內部裝置互連用 Tailscale，需要外部服務（LINE 平台、第三方 webhook）打進來才用 Cloudflare Tunnel。
 

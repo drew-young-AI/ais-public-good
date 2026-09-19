@@ -6,13 +6,15 @@ description: "stat -f / sed -i '' / dd bs=1m / 直接呼叫 docker：四種都�
 tags: [portability, macos, linux, bash, false-success, ci]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "§24 ADR-0008 訂了三天，沒有人檢查另一邊"
     digest: sha256:049967bebe4374ac26281bf9277287eeb74d6427bf91b85373dd0e0f894f222f
     note: "digest 於 2026-09-08 重釘：§24 被加入 ubu 休眠／闔蓋的實測（與本記錄無關），本記錄的主張逐條複查後不變。2026-09-03/04 第二台機器（Ubuntu amd64）開機當天實測找到；CI 曾因此連紅四次"
 status: stable
 inject: auto
 timestamp: '2026-09-04T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # BSD／GNU 的四個陷阱

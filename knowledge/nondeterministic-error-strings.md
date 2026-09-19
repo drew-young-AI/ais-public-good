@@ -6,13 +6,15 @@ description: "同一個故障、同一個指令，連跑三次可以得到三種
 tags: [devops, platform, diagnostics, error-handling, guard-design, flaky, kubernetes]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "T2 的缺陷那半"
     digest: sha256:ef353920f5282009a1f9da07896d3ca85080659209b36ab6b6e19e63ff033fe7
     note: "kubectl 對同一個黑洞 IP 三次回三種字串"
 status: stable
 inject: auto
 timestamp: '2026-09-05T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 逾時訊息不能當判別依據

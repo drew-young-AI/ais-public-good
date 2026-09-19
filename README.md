@@ -1,24 +1,47 @@
 # AIS Public Good — Shared Capability Layer & Knowledge Base
 
-A filtered export from [Agent Interface System](https://github.com/drew-young-AI/AIS), a shared
-capability and memory layer for working across multiple AI CLIs (Claude, Codex, Gemini, Copilot,
-and others). This repository is the public subset: reusable Agent Skills and engineering
-knowledge records, not the private engine, session history, or personal data.
+A filtered export from Agent Interface System (AIS), a shared capability and memory layer for
+working across multiple AI CLIs (Claude, Codex, Gemini, Copilot, and others). **The upstream
+repository is private** — this is the whole public surface, not a pointer into a repo you can
+open. What you see here is the subset that is reusable outside its original machine: Agent Skills
+and engineering knowledge records, without the engine, the session history, or personal data.
+
+> **Language**: knowledge records are written in Traditional Chinese, the language of the
+> environment that produced them. Titles, descriptions and tags are the retrieval keys and are
+> kept short on purpose; skills are mostly English. Translating the record bodies would put a
+> second, independently drifting copy of each claim into circulation, which is the exact failure
+> mode several of these records are about — so it has not been done. See `CONTRIBUTING.md`.
 
 ## What's here
 
-- **`skills/`** — 37 Agent Skills ([open standard](https://github.com/agentskills/agentskills)),
+- **`skills/`** — 36 Agent Skills ([open standard](https://github.com/agentskills/agentskills)),
   filtered to ones any AI CLI user could reuse as-is: browser automation, terminal/tmux IPC,
   git/GitHub operations, and similar general-purpose tooling. Excluded: skills bound to one
   specific AI product's proprietary tool surface (vendor-bound), skills tied to the original
   author's personal/business context (business-bound), and any skill excluded regardless of
   category because its content concerns bypassing bot detection (dual-use risk).
-- **`knowledge/`** — 28 engineering knowledge records: concrete, dated lessons
+- **`knowledge/`** — 25 engineering knowledge records: concrete, dated lessons
   about silent failure modes, guard design, portability traps, and false-success detection. Each
   one traces back to a specific real incident, not a generic best-practice list.
 - **`RELEASE-REPORT.json`** — the audit trail for this export: what was included, what was
-  excluded and why, and which personal file paths were rewritten to `~` or `${AIS_ROOT}` before
-  publishing.
+  excluded and why, and which file paths were rewritten to `~` or `${AIS_ROOT}` before
+  publishing. The report lists the rewritten form only; the original absolute paths stay on the
+  machine that produced the export.
+- **`schema/knowledge-record.schema.json`** + **`tools/validate_export.py`** — the structural
+  contract for a record, and the checker CI runs on every push: frontmatter schema, `id` matches
+  filename, skills carry `name`/`description`/`version`, and no personal paths or
+  credential-shaped strings survived the export.
+
+## How to use it
+
+Skills follow the Agent Skills open standard, so most clients pick them up by dropping a
+directory into their skills path. Knowledge records are plain Markdown with frontmatter — the
+`description` field is the retrieval key, meant to be matched against the current context before
+the body is loaded.
+
+Records carry `source:` entries. Where a source reads `private-source`, the referenced file lives
+on the originating machine; the `digest` is over the excerpted content rather than the path, so
+it stays verifiable for whoever holds the source and is honestly unverifiable for everyone else.
 
 ## What's deliberately not here
 
@@ -28,6 +51,11 @@ knowledge records, not the private engine, session history, or personal data.
 - **The execution engine** — dispatcher, role orchestration, `registry.yaml`, and the rest of
   AIS's pipeline-executor internals. Publishing the knowledge/skills layer is a different, smaller
   decision than publishing the whole engine, and the two aren't bundled here.
+
+## Contributing
+
+Pull requests against exported content get overwritten by the next export; issues with
+counter-evidence do not. See `CONTRIBUTING.md`.
 
 ## License
 

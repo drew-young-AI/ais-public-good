@@ -6,13 +6,15 @@ description: "把寫死的東西改成 registry/plugin/strategy 之後，如果�
 tags: [architecture, extensibility, guard-design, mlops, testing, silent-failure]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "第二個家族是真的，不是宣稱"
     digest: sha256:1b2974a7ed814325578239d0e27e3c3a37226e1c9c09102fe199e4551732a5ad
     note: "schema 從第一天支援多模型，程式碼只有一個，身分手抄四份"
 status: stable
 inject: auto
 timestamp: '2026-09-08T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 一筆的註冊表不是擴充性

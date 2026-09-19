@@ -3,6 +3,7 @@ name: network-troubleshooting-lan-ics
 type: skill
 category: devops
 description: Troubleshoot LAN Internet Sharing from Windows to macOS.
+version: 1.0.0
 ---
 
 ## When to Use

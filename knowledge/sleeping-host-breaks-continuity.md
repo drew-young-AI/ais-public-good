@@ -6,13 +6,15 @@ description: "Prometheus 的 for:、任何 N 分鐘連續條件、以及 launchd
 tags: [devops, platform, monitoring, alerting, prometheus, laptop-host, scheduling, false-negative]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "追記 2026-09-05：下限修好之後，才看見它擋在前面的第二個缺陷"
     digest: sha256:adc7636117515d19e568c8b7c73f041cc8dc0d46e4b34eba0d7c59d996dfefe3
     note: "COVID-19 漂移告警：條件連續 30 小時未變，卻在 firing/pending 之間彈跳"
 status: stable
 inject: auto
 timestamp: '2026-09-05T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 會睡的宿主會把「連續為真」變成「時有時無」

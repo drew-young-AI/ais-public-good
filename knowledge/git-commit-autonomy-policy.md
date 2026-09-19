@@ -11,6 +11,8 @@ source:
 status: stable
 inject: auto
 timestamp: '2026-08-25T15:30:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 一旦使用者與 AI 在專案討論中已經確認「這個專案／子目錄需要 git 版本控制」，AI 不需要每次

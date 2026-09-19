@@ -1,13 +1,17 @@
 ---
 id: mlx-endpoint-start-path
 type: fact
+title: 本機 MLX 端點的啟動路徑
+description: "MLX server 的啟動腳本位置與端點約定；直接 curl 前先確認服務是由該腳本起的。"
 tags: [ais, mlx, local-llm, endpoint]
 source:
-  - path: ~/ENV/activate_mlx_llm.sh
+  - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     digest: sha256:d0ee0347b3bd1b7121a13e2cd46f6f0358f8ae0a5044086c3d2c31ad993082b2
 status: stable
 inject: auto
 timestamp: '2026-09-01T21:10:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 `~/ENV/activate_mlx_llm.sh` is still the historical/documented entry point any tool sources to make sure the MLX local LLM is up, but as of 2026-09-01 it no longer starts a server itself — it just calls `mlx-server ensure`.

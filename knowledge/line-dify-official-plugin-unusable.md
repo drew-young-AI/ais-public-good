@@ -5,11 +5,13 @@ title: Dify 官方 LINE 外掛架構上無法滿足 2 秒上限
 description: "kevintsai/linebot 在 Dify Cloud 同步等 LLM，超過 LINE 2 秒 2xx 規格；改自建橋接。Claude 有這條、Codex 沒有。"
 tags: [line, dify, webhook, integration]
 source:
-  - path: ~/.claude/projects/-Users-drew/memory/line_dify_bridge.md
+  - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     digest: sha256:3cc624ec9f8b38cd254f24f72d2a74e709fe1d79fa8e0b0112aaa87cba2352f3
 status: stable
 inject: auto
 timestamp: '2026-08-24T18:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # Dify 官方 LINE 外掛不可用

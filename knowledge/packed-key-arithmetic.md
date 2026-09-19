@@ -6,13 +6,15 @@ description: "year*100+week、date 寫成 20260908、major*1000+minor 這類打�
 tags: [devops, platform, dataops, sql, duckdb, time-series, guard-design, silent-failure]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "缺陷三：settle 規則的 12 週視窗每年一月會塌陷（2026-09-08 修）"
     digest: sha256:2cc6b406a4ffd2ee6697cee8bb1474be9eb56200b9df174e320e76c1ba2ef1d6
     note: "191/191 個 week-1 列被丟掉，week 13-52 只丟 1/7445"
 status: stable
 inject: auto
 timestamp: '2026-09-08T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 打包鍵不能拿來做算術

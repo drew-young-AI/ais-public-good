@@ -1,8 +1,8 @@
 {
   "license": "MIT",
   "skills": {
-    "included": 37,
-    "excluded": 32,
+    "included": 36,
+    "excluded": 33,
     "excluded_detail": [
       "automation/browser-hta（generic-infra+dual-use）",
       "autonomous-ai-agents/hermes-agent-script-debugging（vendor-bound）",
@@ -21,6 +21,7 @@
       "gaming/pokemon-player（business-bound）",
       "hermes-cli-unified（vendor-bound）",
       "hermes-cli/mcp-stdio-tool-config（vendor-bound）",
+      "hermes-cli/test-skill（fixture）",
       "hermes-desktop-plugins（vendor-bound）",
       "hermes-provider-management（vendor-bound）",
       "hermes-themes（vendor-bound）",
@@ -36,131 +37,102 @@
       "software-development/debugging-hermes-tui-commands（vendor-bound）",
       "software-development/hermes-s6-container-supervision（vendor-bound）",
       "yuanbao（vendor-bound）"
-    ]
+    ],
+    "runtime_artifacts_dropped": [
+      "automation/terminal-ipc/logs/2026-08-08.md",
+      "automation/terminal-ipc/logs/2026-08-09.md",
+      "automation/terminal-ipc/logs/2026-08-12.md",
+      "automation/terminal-ipc/logs/2026-08-19.md",
+      "automation/terminal-ipc/logs/2026-08-20.md",
+      "automation/terminal-ipc/logs/2026-08-21.md",
+      "automation/terminal-ipc/logs/2026-08-29.md",
+      "automation/terminal-ipc/logs/_mlx-ping.err",
+      "automation/terminal-ipc/logs/_mlx-ping.nohup",
+      "automation/terminal-ipc/logs/_mlx-ping.out",
+      "automation/terminal-ipc/logs/_mlx-warmup.err",
+      "automation/terminal-ipc/logs/_mlx-warmup.nohup",
+      "automation/terminal-ipc/logs/_mlx-warmup.out",
+      "automation/terminal-ipc/logs/audit-2026-08-19.html",
+      "automation/terminal-ipc/logs/qwen-crosscheck-2026-08-19.md"
+    ],
+    "missing_version_field": []
   },
   "knowledge": {
-    "included": 28,
-    "excluded": 1,
+    "included": 25,
+    "excluded": 4,
     "excluded_detail": [
-      "user-professional-context（見 EXCLUDED_RECORDS 註解：可識別個資，非工程教訓）"
-    ]
+      "README（shareable: false — 本層的內部說明（含內部索引表），不是知識記錄本身）",
+      "ais-shared-context-canary（shareable: false — 測試夾具，對外部讀者是噪音）",
+      "user-professional-context（見 EXCLUDED_RECORDS 註解：可識別個資，非工程教訓）",
+      "user-work-policy（shareable: false — 使用者個人工作政策，不是可重用的工程教訓）"
+    ],
+    "unmarked_pending_review": [],
+    "stale_excluded": []
   },
   "personal_paths_rewritten_to_tilde": {
     "skills/automation/macos-ui-automation": [
-      "/Users/drew/.hermes/hermes-agent/venv/bin/python\""
+      "~/.hermes/hermes-agent/venv/bin/python\""
     ],
     "skills/browser-automation/browser-automation": [
-      "/Users/drew/.codex/.env",
-      "/Users/drew/Library/Application"
+      "~/.codex/.env",
+      "~/Library/Application"
+    ],
+    "skills/creative/pixel-art": [
+      "~/.hermes/skills/creative/pixel-art/scripts",
+      "~/.hermes/skills/creative/pixel-art/scripts\""
     ],
     "skills/devops/launchd-scheduling": [
-      "/Users/drew/logs/ai-update-error.log</string>",
-      "/Users/drew/logs/ai-update.log</string>",
-      "/Users/drew/logs/llm-monitor-error.log</string>",
-      "/Users/drew/logs/llm-monitor.log</string>",
-      "/Users/drew/scripts/monitor_local_llm.sh</string>",
-      "/Users/drew/scripts/update_ai_tools.sh</string>"
+      "~/logs/ai-update-error.log</string>",
+      "~/logs/ai-update.log</string>",
+      "~/logs/llm-monitor-error.log</string>",
+      "~/logs/llm-monitor.log</string>",
+      "~/scripts/monitor_local_llm.sh</string>",
+      "~/scripts/update_ai_tools.sh</string>"
     ],
     "skills/hermes-config-backup": [
-      "/Users/drew/ENV/temp",
-      "/Users/drew/ENV/temp\"",
-      "/Users/drew/ENV/temp/hermes.zip",
-      "/Users/drew/ENV/temp/hermes.zip.enc",
-      "/Users/drew/ENV/temp/hermes.zip.gpg"
+      "~/ENV/temp",
+      "~/ENV/temp\"",
+      "~/ENV/temp/hermes.zip",
+      "~/ENV/temp/hermes.zip.enc",
+      "~/ENV/temp/hermes.zip.gpg"
     ],
     "skills/mlops/local-mlx-llm-server": [
-      "/Users/drew/ENV/localLLM/bin/activate",
-      "/Users/drew/ENV/localLLM/bin/python",
-      "/Users/drew/models/Qwen3.6-35B-A3B-4bit",
-      "/Users/drew/models/Qwen3.6-35B-A3B-4bit-mlx-converted/<random_suffix>"
+      "~/ENV/localLLM/bin/activate",
+      "~/ENV/localLLM/bin/python",
+      "~/models/Qwen3.6-35B-A3B-4bit",
+      "~/models/Qwen3.6-35B-A3B-4bit-mlx-converted/<random_suffix>"
     ],
     "skills/mlops/mlx-server-kv-cache-quantization": [
-      "/Users/drew/models/Kimi-Dev-72B-4bit-DWQ",
-      "/Users/drew/models/Kimi-Dev-72B-4bit-DWQ\",\"prompt\":\"Hello,"
+      "~/models/Kimi-Dev-72B-4bit-DWQ",
+      "~/models/Kimi-Dev-72B-4bit-DWQ\",\"prompt\":\"Hello,"
     ],
     "skills/mlops/offline-mlx-llm": [
-      "/Users/drew/models/Qwen3.6-35B-A3B-4bit",
-      "/Users/drew/models/Qwen3.6-35B-A3B-4bit\"",
-      "/Users/drew/models/Qwen3.6-35B-A3B-4bit-mlx\""
+      "~/models/Qwen3.6-35B-A3B-4bit",
+      "~/models/Qwen3.6-35B-A3B-4bit\"",
+      "~/models/Qwen3.6-35B-A3B-4bit-mlx\""
     ],
     "skills/software-development/python-virtual-environment-management": [
-      "/Users/drew/Project",
-      "/Users/drew/Project/project_name/requirements.txt",
-      "/Users/drew/Project/project_name/venv/bin/pip",
-      "/Users/drew/Project/��鉛防護衣/dicom_annotator/requirements.txt",
-      "/Users/drew/Project/��鉛防護衣/dicom_annotator/venv",
-      "/Users/drew/Project/��鉛防護衣/dicom_annotator/venv/bin/pip",
-      "/Users/drew/Project/������鉛防護衣/dicom_annotator/venv"
+      "~/Project",
+      "~/Project/project_name/requirements.txt",
+      "~/Project/project_name/venv/bin/pip",
+      "~/Project/��鉛防護衣/dicom_annotator/requirements.txt",
+      "~/Project/��鉛防護衣/dicom_annotator/venv",
+      "~/Project/��鉛防護衣/dicom_annotator/venv/bin/pip",
+      "~/Project/������鉛防護衣/dicom_annotator/venv"
     ],
     "skills/web-task-automation": [
-      "/Users/drew"
-    ],
-    "knowledge/README": [
-      "/Users/drew/Project/line-dify-bridge/"
-    ],
-    "knowledge/backtest-is-not-a-live-score": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
-    ],
-    "knowledge/bsd-gnu-portability-traps": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
-    ],
-    "knowledge/capability-index-boundary": [
-      "/Users/drew/ENV/Devops/docs/Reachability.md"
-    ],
-    "knowledge/command-allowlist-secret-trap": [
-      "/Users/drew/.claude/projects/-Users-drew/memory/agy_permission_model.md"
-    ],
-    "knowledge/copilot-headless-write-false-success": [
-      "/Users/drew/.claude/projects/-Users-drew/memory/copilot_account_rotation.md"
-    ],
-    "knowledge/dimension-with-one-value": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
-    ],
-    "knowledge/free-credit-arsenal": [
-      "/Users/drew/.claude/projects/-Users-drew/memory/free_credit_arsenal.md"
-    ],
-    "knowledge/gate-admits-not-verifies": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
-    ],
-    "knowledge/guard-matches-own-prose": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
+      "~"
     ],
     "knowledge/line-dify-official-plugin-unusable": [
-      "/Users/drew/.claude/projects/-Users-drew/memory/line_dify_bridge.md",
-      "/Users/drew/Project/line-dify-bridge/"
-    ],
-    "knowledge/line-webhook-acceptance-layers": [
-      "/Users/drew/.codex/memories/MEMORY.md"
+      "~/Project/line-dify-bridge/"
     ],
     "knowledge/mlx-call-discipline": [
-      "/Users/drew/.claude/projects/-Users-drew/memory/mlx_usage_discipline.md",
-      "/Users/drew/models/Qwen3.8-27B-4bit"
+      "~/models/Qwen3.8-27B-4bit"
     ],
     "knowledge/mlx-endpoint-start-path": [
-      "/Users/drew/ENV/activate_mlx_llm.sh",
-      "/Users/drew/ENV/localLLM/mlx_venv/bin/python",
-      "/Users/drew/ENV/mlx_llm_server.env"
-    ],
-    "knowledge/nondeterministic-error-strings": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
-    ],
-    "knowledge/one-entry-registry": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
-    ],
-    "knowledge/packed-key-arithmetic": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
-    ],
-    "knowledge/sleeping-host-breaks-continuity": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
-    ],
-    "knowledge/subshell-loses-state": [
-      "/Users/drew/ENV/Devops/docs/Backlog.md"
-    ],
-    "knowledge/user-work-policy": [
-      "/Users/drew/.claude/CLAUDE.md"
-    ],
-    "knowledge/verify-primary-sources": [
-      "/Users/drew/.claude/projects/-Users-drew/memory/verify_primary_sources.md"
+      "~/ENV/activate_mlx_llm.sh",
+      "~/ENV/localLLM/mlx_venv/bin/python",
+      "~/ENV/mlx_llm_server.env"
     ]
   },
   "note": "只匯出 memory（knowledge）與 tools（shareable skills）。history（session 逐字稿）與執行引擎（scripts/adapters/registry.yaml）不在這份匯出裡——那是不同量級的決定，見 release-prepare 檔頭註解。"

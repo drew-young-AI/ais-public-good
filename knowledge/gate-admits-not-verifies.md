@@ -6,13 +6,15 @@ description: "驗收一條產出鏈時，停在「閘門會拒絕不合格者」
 tags: [verification, guard-design, mlops, silent-failure, backward-tracing]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "三、找到的三個缺陷（都已修）"
     digest: sha256:9907ada1ed36ed360ca1aa4092d00fcddb8322adb94226c81217abb105b0dd4f
     note: "trigger 擋掉輸家、發布端卻用寫死的模型重擬合贏家"
 status: stable
 inject: auto
 timestamp: '2026-09-08T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 閘門擋住壞的，不等於放進來的是對的

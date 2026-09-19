@@ -10,6 +10,8 @@ source:
 status: stable
 inject: auto
 timestamp: '2026-08-29T10:30:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # Agent Skills 標準

@@ -2,6 +2,7 @@
 name: telegram-bot
 type: skill
 description: "安全且專屬地處理 codex6520_bot 的 Telegram 訊息與截圖發送。"
+version: 1.0.0
 ---
 
 # telegram-bot Skill

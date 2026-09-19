@@ -5,11 +5,13 @@ title: 本機 MLX 的呼叫紀律與定位
 description: "用 AIS mlx 腳本，不要直接 curl。定位是 contradiction detector。token 預算超過約 6000 會從截斷變成逾時。"
 tags: [mlx, local-llm, ais]
 source:
-  - path: ~/.claude/projects/-Users-drew/memory/mlx_usage_discipline.md
+  - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     digest: sha256:2f7bbcadfa1f69ab0795950488cee5e435a2542fb03b42903dcda8faa9cf380c
 status: stable
 inject: auto
 timestamp: '2026-08-24T18:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 本機 MLX 呼叫紀律

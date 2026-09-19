@@ -2,6 +2,7 @@
 name: colbymchenry-codegraph
 type: skill
 description: Use @colbymchenry/codegraph npm package to generate code dependency graphs.
+version: 1.0.0
 ---
 # Colbymchenry Codegraph Skill
 

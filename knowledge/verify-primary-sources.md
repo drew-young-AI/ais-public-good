@@ -5,11 +5,13 @@ title: 工具能力邊界先查一手來源
 description: "對外部工具「能不能做 Y / 重疊多少」的具體宣稱，先讀官方 repo 與 docs，二手部落格只找線索不定案。"
 tags: [research, sources, architecture]
 source:
-  - path: ~/.claude/projects/-Users-drew/memory/verify_primary_sources.md
+  - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     digest: sha256:3f42fbcc98780a4b6225c41104770190523186b657810d0d09571c729cd47313
 status: stable
 inject: auto
 timestamp: '2026-08-24T18:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 工具能力邊界先查一手來源

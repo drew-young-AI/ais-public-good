@@ -2,6 +2,7 @@
 name: web-quiz-automation
 type: skill
 description: Automate online quizzes via text-based interaction.
+version: 1.0.0
 ---
 # Web Quiz Automation
 

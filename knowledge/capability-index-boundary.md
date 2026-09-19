@@ -5,11 +5,13 @@ title: AIS registry 與各專案自己的能力索引，是兩層不是兩份
 description: "判準是「別的 AI 工具需要直接呼叫它嗎」：是→AIS registry（含 verify）；否→留在專案的能力表。兩邊都登記就是自己造一份會分岔的副本。"
 tags: [capabilities, registry, governance, ais, reachability]
 source:
-  - path: ~/ENV/Devops/docs/Reachability.md
-    digest: sha256:f7fdc182bcb8c94c01df6f3ed70c46055179e99b07c4a49e3785b7917ecd0c6a
+  - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
+    digest: sha256:faf67543deca78d42cb06700aefc522209fcba17677236c9b2bd464333c18711
 status: stable
 inject: auto
 timestamp: '2026-09-02T20:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 能力索引的邊界

@@ -5,11 +5,13 @@ title: 指令 allow-list 會把密鑰寫進設定
 description: "核准含密鑰的整段指令後，密鑰會留在 config、log、conversation db。agy 的權限檔路徑與複合指令行為也在此。"
 tags: [agy, permissions, secrets, security]
 source:
-  - path: ~/.claude/projects/-Users-drew/memory/agy_permission_model.md
+  - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     digest: sha256:8033ec11fa1cda915278417d1ea7adab3ab83fff61a8bf9c99cbc334187ebb9a
 status: stable
 inject: auto
 timestamp: '2026-08-24T18:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 指令 allow-list 的密鑰陷阱

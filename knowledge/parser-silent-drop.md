@@ -6,12 +6,14 @@ description: "不認得的資料形狀被跳過而不報錯，會產生看起來
 tags: [parser, false-success, data-integrity, ais]
 source:
   - path: ${AIS_ROOT}/capabilities/scripts/session-ingest
-    digest: sha256:ef8e532816f241776bf11c80988ba8d5f76bed9ddf3227465caeab08030bc087
+    digest: sha256:90c88567216c6e9f465607090d19f5df6dffb9f4dff3d515c43a34b41f7355ac
   - path: ${AIS_ROOT}/adapters/test_dispatcher_smoke.py
-    digest: sha256:9330172b1fc01d72bec550bba0683ba4a404a061d0502893213c43b398526cbc
+    digest: sha256:956c98aec188cde5b296036f910109d5d2a21882e804fb7f5e17d7dedb924aaf
 status: stable
 inject: auto
 timestamp: '2026-09-02T19:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 解析器的靜默丟棄

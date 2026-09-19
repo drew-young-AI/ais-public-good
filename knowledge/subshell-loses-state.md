@@ -6,13 +6,15 @@ description: "X=\"$(f)\" 裡 f 對陣列的追加隨子 shell 消失，父行程
 tags: [bash, subshell, silent-failure, cleanup, disk]
 source:
   - agent: claude
-    path: ~/ENV/Devops/docs/Backlog.md
+    path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
     locator: "§25 磁碟是被測試套件填滿的"
     digest: sha256:91c6cba24e73668ab86351bcc40c30c0e1a40bbf056b10abfe931ce488283403
     note: "第一次：合成控制的計數器永遠到不了 3。第二次：測試 sandbox 註冊表從未清理過任何東西，421GB 累積於 $TMPDIR"
 status: stable
 inject: auto
 timestamp: '2026-09-04T00:00:00+08:00'
+shareable: true
+reviewed_at: '2026-09-19'
 ---
 
 # 子 shell 是狀態去被遺忘的地方

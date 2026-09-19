@@ -2,6 +2,7 @@
 name: macos-network-troubleshooting
 type: skill
 description: Troubleshoot LAN connectivity on macOS
+version: 1.0.0
 ---
 
 # macOS Network Troubleshooting (LAN)
