@@ -6,7 +6,7 @@ description: "用 AIS mlx 腳本，不要直接 curl。定位是 contradiction d
 tags: [mlx, local-llm, ais]
 source:
   - path: private-source   # 原始位置在私有機器上，digest 仍可由來源持有者驗證
-    digest: sha256:2f7bbcadfa1f69ab0795950488cee5e435a2542fb03b42903dcda8faa9cf380c
+    digest: sha256:eb78e6ea50f9b1a06071981dae9cc789ee723bad39ccc48232b924b931571fbb
 status: stable
 inject: auto
 timestamp: '2026-08-24T18:00:00+08:00'

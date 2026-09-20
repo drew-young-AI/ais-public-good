@@ -2,7 +2,7 @@
   "license": "MIT",
   "skills": {
     "included": 36,
-    "excluded": 33,
+    "excluded": 34,
     "excluded_detail": [
       "automation/browser-hta（generic-infra+dual-use）",
       "autonomous-ai-agents/hermes-agent-script-debugging（vendor-bound）",
@@ -29,6 +29,7 @@
       "mcp/native-mcp（vendor-bound）",
       "media/spotify（vendor-bound）",
       "mlops/inference/obliteratus（business-bound）",
+      "productivity/goal-prep（vendor-bound）",
       "productivity/petdex（vendor-bound）",
       "productivity/pkm-vocabulary-builder（business-bound）",
       "productivity/systemprompt-manager（business-bound）",
@@ -58,7 +59,7 @@
     "missing_version_field": []
   },
   "knowledge": {
-    "included": 25,
+    "included": 26,
     "excluded": 4,
     "excluded_detail": [
       "README（shareable: false — 本層的內部說明（含內部索引表），不是知識記錄本身）",

@@ -20,7 +20,7 @@ and engineering knowledge records, without the engine, the session history, or p
   specific AI product's proprietary tool surface (vendor-bound), skills tied to the original
   author's personal/business context (business-bound), and any skill excluded regardless of
   category because its content concerns bypassing bot detection (dual-use risk).
-- **`knowledge/`** — 25 engineering knowledge records: concrete, dated lessons
+- **`knowledge/`** — 26 engineering knowledge records: concrete, dated lessons
   about silent failure modes, guard design, portability traps, and false-success detection. Each
   one traces back to a specific real incident, not a generic best-practice list.
 - **`RELEASE-REPORT.json`** — the audit trail for this export: what was included, what was
