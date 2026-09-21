@@ -1,0 +1,669 @@
+{
+  "schema": "ais-public-index/1",
+  "generated_by": "capabilities/scripts/release-prepare",
+  "counts": {
+    "records": 26,
+    "skills": 36
+  },
+  "how_to_consume": "Fetch this index first, pick by `description` and `tags`, then fetch only those `path`s. Each record's `sha256` pins the exact text you read; keep it alongside anything you generate from it so the provenance survives.",
+  "records": [
+    {
+      "id": "agent-skills-open-standard",
+      "path": "knowledge/agent-skills-open-standard.md",
+      "title": "Agent Skills 是開放標準，不合規等於不存在",
+      "description": "SKILL.md 需 name/description/version、小寫連字號、name 與目錄名一致；description 是檢索鍵不是說明文；分隔線帶尾隨空白會讓 skill 對所有標準客戶端隱形。",
+      "tags": [
+        "skills",
+        "standards",
+        "interoperability",
+        "ais",
+        "capabilities"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 1629,
+      "sha256": "6fc41ea08953ca973697d413c1dcbb6e39bdf7c06cb68993a33b87f0b4e09cf5"
+    },
+    {
+      "id": "backtest-is-not-a-live-score",
+      "path": "knowledge/backtest-is-not-a-live-score.md",
+      "title": "回測分數不是上線分數，而且一整排綠燈可以是「沒有人回頭看過」",
+      "description": "模型層的看板可以全綠——特徵建好、回測跑完、閘門有拒絕、預測已發布——而從來沒有任何東西把發出去的那個數字跟真的到來的那一週比過。回測比的是模型被擬合圍繞的歷史；上線分數比的是真實。兩者都對，但只有前者在板面上時，板面說的是另一件事。",
+      "tags": [
+        "mlops",
+        "observability",
+        "model-evaluation",
+        "guard-design",
+        "silent-failure",
+        "forecasting"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2711,
+      "sha256": "2421b4f870924e175d2254d28c241566a454360655cad7a1ff942f0bb64a7354"
+    },
+    {
+      "id": "bsd-gnu-portability-traps",
+      "path": "knowledge/bsd-gnu-portability-traps.md",
+      "title": "BSD 與 GNU 的介面差異：在 macOS 上綠、在 Linux 上靜默失敗的四種寫法",
+      "description": "stat -f / sed -i '' / dd bs=1m / 直接呼叫 docker：四種都在 macOS 通過、在 Linux 靜默失敗或變成假缺陷；三種的錯誤訊息會去到被重導掉的 stderr。",
+      "tags": [
+        "portability",
+        "macos",
+        "linux",
+        "bash",
+        "false-success",
+        "ci"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2033,
+      "sha256": "11239d0799227bc533ddce30538174de80350702197a14cd0065837870e0cec0"
+    },
+    {
+      "id": "capability-index-boundary",
+      "path": "knowledge/capability-index-boundary.md",
+      "title": "AIS registry 與各專案自己的能力索引，是兩層不是兩份",
+      "description": "判準是「別的 AI 工具需要直接呼叫它嗎」：是→AIS registry（含 verify）；否→留在專案的能力表。兩邊都登記就是自己造一份會分岔的副本。",
+      "tags": [
+        "capabilities",
+        "registry",
+        "governance",
+        "ais",
+        "reachability"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 1643,
+      "sha256": "bc3ecfdab037786073a92c0123a73573876cd0a98809e3b7da68a49a7e540d85"
+    },
+    {
+      "id": "command-allowlist-secret-trap",
+      "path": "knowledge/command-allowlist-secret-trap.md",
+      "title": "指令 allow-list 會把密鑰寫進設定",
+      "description": "核准含密鑰的整段指令後，密鑰會留在 config、log、conversation db。agy 的權限檔路徑與複合指令行為也在此。",
+      "tags": [
+        "agy",
+        "permissions",
+        "secrets",
+        "security"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 924,
+      "sha256": "2cb4e64fd8f8d1071ac5a3939adae17b83cf5730dbf9062b170fd01766fdc3e6"
+    },
+    {
+      "id": "copilot-headless-write-false-success",
+      "path": "knowledge/copilot-headless-write-false-success.md",
+      "title": "Copilot headless 寫入假成功與帳號輪替",
+      "description": "未設 COPILOT_ALLOW_ALL 時寫入會落到 session-state 仍回報 DONE。帳號在 ~/.accounts。文件宣稱 classic PAT 不可用，實測可。",
+      "tags": [
+        "copilot",
+        "false-success",
+        "accounts"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 727,
+      "sha256": "efe84c744a7aa959c73b72a74abe36966639c13a95e6f3e4362e12ef2aa897d1"
+    },
+    {
+      "id": "dimension-with-one-value",
+      "path": "knowledge/dimension-with-one-value.md",
+      "title": "一個「目前只有一個值」的維度，它的缺席不會報錯",
+      "description": "當租戶／專案／預測目標這類維度目前只有一個值時，把它從鍵、查詢、標籤與測試夾具裡省略，寫的當天完全正確。第二個值出現時四種東西同時變錯而沒有一個會報錯：「取最新的那個」、跨值比較、聚合遮蔽，以及夾具本身——守衛也假設只有一個，所以它會報一個不存在的失敗。",
+      "tags": [
+        "design",
+        "data-modelling",
+        "testing",
+        "guard-design",
+        "silent-failure",
+        "multi-tenancy"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2117,
+      "sha256": "68e66df73d96cc57c67ab8525e03b8edcf3bd6197caab2b0db10e2c23b686b8b"
+    },
+    {
+      "id": "free-credit-arsenal",
+      "path": "knowledge/free-credit-arsenal.md",
+      "title": "免費 credit 彈藥庫：三支後備 CLI 的旗標與假成功形狀",
+      "description": "qodercli / kiro-cli / devin 於 2026-08-31 實跑納入 execute 鏈。三支各有一種缺旗標就 rc=0 卻沒做事的形狀；kiro-cli 是唯一回傳結構化成敗與計費的一支。",
+      "tags": [
+        "cli",
+        "false-success",
+        "cost",
+        "ais"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2184,
+      "sha256": "6c7bae69854ec34ac6921d0206096e2f616c28caa77ee4b50d0b1c9937ed5449"
+    },
+    {
+      "id": "gate-admits-not-verifies",
+      "path": "knowledge/gate-admits-not-verifies.md",
+      "title": "閘門擋住壞的，不等於放進來的是對的",
+      "description": "驗收一條產出鏈時，停在「閘門會拒絕不合格者」就會漏掉整個寫入端。閘門是必要條件，在看板上長得跟充分條件一樣。倒推每一跳要走進『寫這張表的那支程式』，不是只確認表上有守衛。",
+      "tags": [
+        "verification",
+        "guard-design",
+        "mlops",
+        "silent-failure",
+        "backward-tracing"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2331,
+      "sha256": "6f1dbc38e38231749a1dd5bbe97084d1168e1614dbc7ddf8e42ab5bc1ce6f9fb"
+    },
+    {
+      "id": "git-commit-autonomy-policy",
+      "path": "knowledge/git-commit-autonomy-policy.md",
+      "title": "Git commit 時機的自主授權",
+      "description": "專案一旦確認需要 git 版本控制，AI 可自行決定一般 commit 的時機，不必逐次詢問；破壞性操作不在授權範圍。",
+      "tags": [
+        "git",
+        "governance",
+        "ais"
+      ],
+      "type": "policy",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 939,
+      "sha256": "abe143fbf5ba8f337bffe600eb77cb7378d77e969fb06cc50693c4364a3e374a"
+    },
+    {
+      "id": "guard-matches-own-prose",
+      "path": "knowledge/guard-matches-own-prose.md",
+      "title": "文字比對的守衛會匹配到自己的散文（單一檔案內六次）",
+      "description": "grep 式的靜態規則活在它所搜尋的語料裡：規則的實作、註解與 fixture 都會被自己抓到。這不是疏忽，是方法的定義性質，新增規則時要預設它會發生。",
+      "tags": [
+        "static-analysis",
+        "guard-design",
+        "false-positive",
+        "testing"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 1770,
+      "sha256": "6229d6f33b3f3cfa20c65bf77136fc905ce3b61dec8723b7e48fc0d658806307"
+    },
+    {
+      "id": "knowledge-bitemporal-supersede",
+      "path": "knowledge/knowledge-bitemporal-supersede.md",
+      "title": "被推翻的知識要標記取代，不要刪除",
+      "description": "共用知識層的過期只能表達「可能不準」，無法表達「被哪一條推翻、從哪天起」。雙時間軸（成立日／被取代日）補這一格；衝突時標記失效不刪除，保留可稽核沿革。",
+      "tags": [
+        "knowledge",
+        "memory",
+        "governance",
+        "ais"
+      ],
+      "type": "policy",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2940,
+      "sha256": "16d3c94c8b9cfed9ecb73f80dbc0ce49699dc8ba4e9bb346e06d750a4fc353cd"
+    },
+    {
+      "id": "launchd-service-false-success",
+      "path": "knowledge/launchd-service-false-success.md",
+      "title": "launchd 服務「回報成功但實際已死」的假成功樣態",
+      "description": "hermes gateway start 回 success、狀態檔寫 running，但 launchd 延遲 reload 讓 process 已死；本機服務的健康判定不可只信服務自報。",
+      "tags": [
+        "launchd",
+        "macos",
+        "false-success",
+        "health-check",
+        "hermes"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 1746,
+      "sha256": "3eed4faebab1a1db0e4352252f0a9a3a743d4e20030d18c878ab101eef02215c"
+    },
+    {
+      "id": "line-dify-official-plugin-unusable",
+      "path": "knowledge/line-dify-official-plugin-unusable.md",
+      "title": "Dify 官方 LINE 外掛架構上無法滿足 2 秒上限",
+      "description": "kevintsai/linebot 在 Dify Cloud 同步等 LLM，超過 LINE 2 秒 2xx 規格；改自建橋接。Claude 有這條、Codex 沒有。",
+      "tags": [
+        "line",
+        "dify",
+        "webhook",
+        "integration"
+      ],
+      "type": "fact",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 779,
+      "sha256": "b8042c9efc3bb2b0fb3115a752414c9cc53edbcc3775f0466a44eb753a3fa211"
+    },
+    {
+      "id": "line-webhook-acceptance-layers",
+      "path": "knowledge/line-webhook-acceptance-layers.md",
+      "title": "LINE webhook 驗收必須分層，健康檢查不是對話",
+      "description": "Hermes LINE 與任何 LINE webhook：本地 health、公開 endpoint、官方測試、真實來回是四層。Quick Tunnel 不是正式穩定宣稱。",
+      "tags": [
+        "line",
+        "webhook",
+        "hermes",
+        "health-check",
+        "integration"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 894,
+      "sha256": "32c337a77638329e1a101d5198f44a4e294fcd9aabbb8a8325a5588adcd971dd"
+    },
+    {
+      "id": "mlx-call-discipline",
+      "path": "knowledge/mlx-call-discipline.md",
+      "title": "本機 MLX 的呼叫紀律與定位",
+      "description": "用 AIS mlx 腳本，不要直接 curl。定位是 contradiction detector。token 預算超過約 6000 會從截斷變成逾時。",
+      "tags": [
+        "mlx",
+        "local-llm",
+        "ais"
+      ],
+      "type": "policy",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 3215,
+      "sha256": "1d504d2909e8119ed833bb421e0d6c5f4e3ad1f079bfe6796b81770ba9d654b1"
+    },
+    {
+      "id": "mlx-endpoint-start-path",
+      "path": "knowledge/mlx-endpoint-start-path.md",
+      "title": "本機 MLX 端點的啟動路徑",
+      "description": "MLX server 的啟動腳本位置與端點約定；直接 curl 前先確認服務是由該腳本起的。",
+      "tags": [
+        "ais",
+        "mlx",
+        "local-llm",
+        "endpoint"
+      ],
+      "type": "fact",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 1447,
+      "sha256": "955e1854123583e7d7547ace6acaef7aa8225ada1992dc14c2910e13dd23f25d"
+    },
+    {
+      "id": "nondeterministic-error-strings",
+      "path": "knowledge/nondeterministic-error-strings.md",
+      "title": "網路逾時的錯誤字串不確定，據以分支的守衛是靠運氣才對的",
+      "description": "同一個故障、同一個指令，連跑三次可以得到三種不同的錯誤訊息。把診斷分支建在這種字串上，會在寫的當天通過、日後在沒人看的時候悄悄給出錯誤答案。判準：重跑三次，字串不同就不可當依據。",
+      "tags": [
+        "devops",
+        "platform",
+        "diagnostics",
+        "error-handling",
+        "guard-design",
+        "flaky",
+        "kubernetes"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 1771,
+      "sha256": "bb948b6151169398fadfc099840cd6a7b932c4b47d8c0f0fd3cfab7c6dc864e3"
+    },
+    {
+      "id": "one-entry-registry",
+      "path": "knowledge/one-entry-registry.md",
+      "title": "只有一筆的註冊表，跟寫死是同一件事穿上機制的外衣",
+      "description": "把寫死的東西改成 registry/plugin/strategy 之後，如果只登記了原本那一個，擴充性從未被執行過一次。判準：第二筆必須是真的跑得起來並留下紀錄的，而且測試的第一條斷言是「有第二筆」，不是「字典存在」。",
+      "tags": [
+        "architecture",
+        "extensibility",
+        "guard-design",
+        "mlops",
+        "testing",
+        "silent-failure"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2272,
+      "sha256": "675fff37e5994dad49dd041d8f808315a8e70547753ccdfca255eb2b50ebd6a9"
+    },
+    {
+      "id": "packed-key-arithmetic",
+      "path": "knowledge/packed-key-arithmetic.md",
+      "title": "把兩個欄位塞進一個整數之後，對它做加減是只在欄位內部成立的算術",
+      "description": "year*100+week、date 寫成 20260908、major*1000+minor 這類打包鍵，一旦拿去做 `x - 12`、`BETWEEN`、視窗範圍，跨欄位邊界就會悄悄要到一個沒有任何值能落在的區間。查詢照樣有效、數字照樣合理，只在一年裡的某幾週發作。判準：對打包鍵做算術一律改成對『排序後的位置』做算術。",
+      "tags": [
+        "devops",
+        "platform",
+        "dataops",
+        "sql",
+        "duckdb",
+        "time-series",
+        "guard-design",
+        "silent-failure"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2516,
+      "sha256": "596f4265defc520e0189dd25a190ef7add240d6f660db6bb1cffef5631a9efe3"
+    },
+    {
+      "id": "parser-silent-drop",
+      "path": "knowledge/parser-silent-drop.md",
+      "title": "解析器的靜默丟棄比解析失敗危險得多",
+      "description": "不認得的資料形狀被跳過而不報錯，會產生看起來合理的殘缺資料集。實測：gemini 441 則使用者訊息消失，DB 顯示 user=0 assistant=693，像「這家很少提問」。",
+      "tags": [
+        "parser",
+        "false-success",
+        "data-integrity",
+        "ais"
+      ],
+      "type": "policy",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2567,
+      "sha256": "cda4dbd51b0e304c237914e782c3c81f46d8c7a9ea9a9162a7ba617ffe464c35"
+    },
+    {
+      "id": "service-liveness-vs-capability",
+      "path": "knowledge/service-liveness-vs-capability.md",
+      "title": "服務活著不等於那件事做得到——健康探測與能力探測必須分開",
+      "description": "MLX 端點連續半個月回 200、selftest rc=0，但每次真實推理都 404（設定的模型本機不存在）。健康探測只證明服務在；要證明能力，必須發一次最小的真實請求。",
+      "tags": [
+        "false-success",
+        "health-check",
+        "verification",
+        "local-llm",
+        "mlx",
+        "registry"
+      ],
+      "type": "policy",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2749,
+      "sha256": "7961d66741ff0f796ab7976596fc4713c1f8f61a58586d1d2cd116aa14bef844"
+    },
+    {
+      "id": "session-archive-storage-choice",
+      "path": "knowledge/session-archive-storage-choice.md",
+      "title": "各家 AI session 封存的儲存選型與分層",
+      "description": "攝入層用嵌入式 SQLite 不用 MongoDB：codex 自己就是 JSONL 當 SSoT ＋ SQLite 當可重建投影。十家來源實測。圖層（Kuzu/Graphiti）是之後的衍生投影，不是攝入層。",
+      "tags": [
+        "knowledge",
+        "memory",
+        "storage",
+        "ais",
+        "session"
+      ],
+      "type": "policy",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 3792,
+      "sha256": "e34f87b9da6162bd897a0342007607a5064ae5645532702587c657af7627faeb"
+    },
+    {
+      "id": "sleeping-host-breaks-continuity",
+      "path": "knowledge/sleeping-host-breaks-continuity.md",
+      "title": "「連續為真」的告警條件在會睡的宿主上結構性地無法被滿足",
+      "description": "Prometheus 的 for:、任何 N 分鐘連續條件、以及 launchd/cron 的區間排程，都假設宿主一直醒著。筆電會睡，於是條件從未改變的訊號會在 firing 與 pending 之間彈跳，而板面看起來像訊號消失。修法是用時間窗取代連續性，參數要量不要猜。",
+      "tags": [
+        "devops",
+        "platform",
+        "monitoring",
+        "alerting",
+        "prometheus",
+        "laptop-host",
+        "scheduling",
+        "false-negative"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 2660,
+      "sha256": "3ac287920082451f97fd8b205b620aff366f0fb6844df712e4d1e41797c10f68"
+    },
+    {
+      "id": "subshell-loses-state",
+      "path": "knowledge/subshell-loses-state.md",
+      "title": "命令替換是子 shell——陣列累積會靜默消失（同一 repo 兩次，第二次代價 421GB）",
+      "description": "X=\"$(f)\" 裡 f 對陣列的追加隨子 shell 消失，父行程看到空陣列。清理迴圈因此從未刪過任何東西，而所有輸出都正常。跨子 shell 累積要用檔案。",
+      "tags": [
+        "bash",
+        "subshell",
+        "silent-failure",
+        "cleanup",
+        "disk"
+      ],
+      "type": "reference",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 1906,
+      "sha256": "e5e43e54e785fdede1a544786620d3aa5c7252bca900273e12ed81f24da4a20b"
+    },
+    {
+      "id": "verify-primary-sources",
+      "path": "knowledge/verify-primary-sources.md",
+      "title": "工具能力邊界先查一手來源",
+      "description": "對外部工具「能不能做 Y / 重疊多少」的具體宣稱，先讀官方 repo 與 docs，二手部落格只找線索不定案。",
+      "tags": [
+        "research",
+        "sources",
+        "architecture"
+      ],
+      "type": "policy",
+      "reviewed_at": "2026-09-19",
+      "body_bytes": 619,
+      "sha256": "e254320dcf6ef5f86973395b08eeb170f453a9a87ed7b3f1c31b4d5f0405dc2d"
+    }
+  ],
+  "skills": [
+    {
+      "name": "macos-computer-use",
+      "path": "skills/apple/macos-computer-use",
+      "description": "Drive the macOS desktop in the background — screenshots, mouse, keyboard,\nscroll, drag — without stealing the user's cursor, keyboard focus, or\nSpace. Works with any tool-capable model. Load this skill whenever the\n`computer_use` tool is available.\n",
+      "version": "1.0.0"
+    },
+    {
+      "name": "interactive-terminal-ipc",
+      "path": "skills/automation/interactive-terminal-ipc",
+      "description": "Use observe-act-verify for tmux terminal IPC.",
+      "version": "1.1.0"
+    },
+    {
+      "name": "macos-ui-automation",
+      "path": "skills/automation/macos-ui-automation",
+      "description": "Universal macOS UI Automation Skill v7.0.0.\nUses launchd for OS-native scheduling (replaces unreliable time.sleep), caffeinate for sleep prevention,\nheartbeat logging, Anti-Modal Focus-Healing, File Lock, and Acknowledgement Feedback Protocol.\n",
+      "version": "7.0.0"
+    },
+    {
+      "name": "telegram-bot",
+      "path": "skills/automation/telegram-bot",
+      "description": "安全且專屬地處理 codex6520_bot 的 Telegram 訊息與截圖發送。",
+      "version": "1.0.0"
+    },
+    {
+      "name": "terminal-ipc",
+      "path": "skills/automation/terminal-ipc",
+      "description": "Terminal IPC v1.1.0 — 透過 tmux 對「其他 AI CLI 的終端」注入按鍵、回讀畫面、等待握手，\n全程留 markdown 稽核軌。用於多 agent 終端協作與跨 AI 狀態互相確認。\n解決的實測問題：agy「could not open TTY」、grok「Device not configured」等 CLI 在無 TTY 環境失效；\n以及對 Claude Code 這類 TUI，send-keys rc=0 並不代表畫面真的吃到字。\n",
+      "version": "1.1.0"
+    },
+    {
+      "name": "browser-automation",
+      "path": "skills/browser-automation/browser-automation",
+      "description": "智能瀏覽器自動化 API 網關：整合 browser-use 與 Kimi WebBridge，提供標準化 REST/MCP 介面供任何 AI CLI 調用。",
+      "version": "2.1.0"
+    },
+    {
+      "name": "web-quiz-automation",
+      "path": "skills/browser-automation/web-quiz-automation",
+      "description": "Automate online quizzes via text-based interaction.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "creative-ideation",
+      "path": "skills/creative/creative-ideation",
+      "description": "Generate project ideas via creative constraints.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "html-artifact",
+      "path": "skills/creative/html-artifact",
+      "description": "Build self-contained HTML files to explain, plan, or review.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "pixel-art",
+      "path": "skills/creative/pixel-art",
+      "description": "Pixel art w/ era palettes (NES, Game Boy, PICO-8).",
+      "version": "2.0.0"
+    },
+    {
+      "name": "colab-runtime",
+      "path": "skills/data-science/colab-runtime",
+      "description": "Provision and run Python on remote Google Colab GPUs/TPUs (A100/H100) from the terminal via the official Google Colab CLI.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "jupyter-live-kernel",
+      "path": "skills/data-science/jupyter-live-kernel",
+      "description": "Iterative Python via live Jupyter kernel (hamelnb).",
+      "version": "1.0.0"
+    },
+    {
+      "name": "cloudflare-cli",
+      "path": "skills/devops/cloudflare-cli",
+      "description": "Operate Cloudflare from the terminal: expose local services via Tunnel (cloudflared), and manage/deploy Workers + call Workers AI inference via Wrangler or the REST API.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "launchd-scheduling",
+      "path": "skills/devops/launchd-scheduling",
+      "description": "Schedule recurring tasks on macOS using launchd plist files for transparency and easy editing by AI CLI tools.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "line-webhook-watchdog",
+      "path": "skills/devops/line-webhook-watchdog",
+      "description": "Check, diagnose, and safely recover a LINE Messaging API webhook without assuming a specific bot framework, tunnel provider, scheduler, or secret location.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "network-troubleshooting-lan-ics",
+      "path": "skills/devops/network-troubleshooting-lan-ics",
+      "description": "Troubleshoot LAN Internet Sharing from Windows to macOS.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "github-ops",
+      "path": "skills/github/github-ops",
+      "description": "Complete GitHub operations: auth, repos, issues, PRs, code review, CI, releases — unified gh/curl workflows.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "hermes-config-backup",
+      "path": "skills/hermes-config-backup",
+      "description": "Backup Hermes Agent configuration including config.yaml and .env to a zip file.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "heartmula",
+      "path": "skills/media/heartmula",
+      "description": "HeartMuLa: Suno-like song generation from lyrics + tags.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "local-mlx-llm-server",
+      "path": "skills/mlops/local-mlx-llm-server",
+      "description": "Set up and run a local MLX-LLM server for offline use with Hermes Agent.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "mlx-server-kv-cache-quantization",
+      "path": "skills/mlops/mlx-server-kv-cache-quantization",
+      "description": "Optimize MLX-LLM server memory via KV-cache quantization.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "audiocraft",
+      "path": "skills/mlops/models/audiocraft",
+      "description": "AudioCraft: MusicGen text-to-music, AudioGen text-to-sound.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "segment-anything",
+      "path": "skills/mlops/models/segment-anything",
+      "description": "SAM: zero-shot image segmentation via points, boxes, masks.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "offline-mlx-llm",
+      "path": "skills/mlops/offline-mlx-llm",
+      "description": "Run local MLX quantized models offline for Hermes Agent.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "dspy",
+      "path": "skills/mlops/research/dspy",
+      "description": "DSPy: declarative LM programs, auto-optimize prompts, RAG.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "macos-network-troubleshooting",
+      "path": "skills/networking/macos-network-troubleshooting",
+      "description": "Troubleshoot LAN connectivity on macOS",
+      "version": "1.0.0"
+    },
+    {
+      "name": "tailscale-cli",
+      "path": "skills/networking/tailscale-cli",
+      "description": "Operate the Tailscale mesh VPN (WireGuard-based) from the terminal: check tailnet status, ping/connect to devices across networks, expose local services (serve/funnel), SSH between tailnet machines, transfer files.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "linear",
+      "path": "skills/productivity/linear",
+      "description": "Linear: manage issues, projects, teams via GraphQL + curl.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "m365-cli",
+      "path": "skills/productivity/m365-cli",
+      "description": "Manage Microsoft 365 — Teams, SharePoint, OneDrive, Entra, Viva — from the terminal via the CLI for Microsoft 365 (m365).",
+      "version": "1.0.0"
+    },
+    {
+      "name": "office-documents",
+      "path": "skills/productivity/office-documents",
+      "description": "Read and summarize Microsoft Office files: Word .docx, Excel .xlsx/.xls, PowerPoint .pptx, and PDFs.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "godmode",
+      "path": "skills/red-teaming/godmode",
+      "description": "Jailbreak LLMs: Parseltongue, GODMODE, ULTRAPLINIAN.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "colbymchenry-codegraph",
+      "path": "skills/software-development/colbymchenry-codegraph",
+      "description": "Use @colbymchenry/codegraph npm package to generate code dependency graphs.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "python-virtual-environment-management",
+      "path": "skills/software-development/python-virtual-environment-management",
+      "description": "Manage Python venvs: locate, pip freeze, requirements.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "subagent-driven-development",
+      "path": "skills/software-development/subagent-driven-development",
+      "description": "Execute plans via delegate_task subagents (2-stage review).",
+      "version": "1.1.0"
+    },
+    {
+      "name": "writing-plans",
+      "path": "skills/software-development/writing-plans",
+      "description": "Write implementation plans: bite-sized tasks, paths, code.",
+      "version": "1.1.0"
+    },
+    {
+      "name": "web-task-automation",
+      "path": "skills/web-task-automation",
+      "description": "Automate web interactions and report via Telegram.",
+      "version": 1.0
+    }
+  ]
+}

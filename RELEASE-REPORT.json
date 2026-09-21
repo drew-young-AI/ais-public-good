@@ -70,6 +70,10 @@
     "unmarked_pending_review": [],
     "stale_excluded": []
   },
+  "index": {
+    "records": 26,
+    "skills": 36
+  },
   "personal_paths_rewritten_to_tilde": {
     "skills/automation/macos-ui-automation": [
       "~/.hermes/hermes-agent/venv/bin/python\""
